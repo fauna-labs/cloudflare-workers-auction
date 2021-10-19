@@ -1,0 +1,5 @@
+CreateFunction({
+  "name": "GetAllListings",
+  "body": Query(Lambda("", Map(Paginate(Documents(Collection("Listing"))), Lambda("listingRef", Get(Var("listingRef")))))),
+  "role": Role("UDF")
+})

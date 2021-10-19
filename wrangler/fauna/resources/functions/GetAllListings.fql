@@ -1,0 +1,14 @@
+// Copyright Fauna, Inc.
+// SPDX-License-Identifier: MIT-0
+
+CreateFunction({
+  name: "GetAllListings",
+  body: Query(Lambda(
+    "",
+    Map(
+      Paginate(Documents(Collection("Listing"))),
+      Lambda("listingRef", Get(Var("listingRef")))
+    )
+  )),
+  role: Role("UDF")
+})

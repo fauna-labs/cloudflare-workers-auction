@@ -1,0 +1,5 @@
+CreateFunction({
+  "name": "GetHighestBid",
+  "body": Query(Lambda("listingID", Get(Match(Index("bid_by_listing_price_descending"), Ref(Collection("Listing"), Var("listingID")))))),
+  "role": Role("UDF")
+})

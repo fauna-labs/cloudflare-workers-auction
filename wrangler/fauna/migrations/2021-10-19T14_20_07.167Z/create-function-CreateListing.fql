@@ -1,0 +1,7 @@
+CreateFunction({
+  "name": "CreateListing",
+  "body": Query(Lambda(["listing"], Create(Collection("Listing"), {
+    "data": Var("listing")
+  }))),
+  "role": Role("UDF")
+})

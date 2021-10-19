@@ -1,0 +1,16 @@
+// Copyright Fauna, Inc.
+// SPDX-License-Identifier: MIT-0
+
+CreateFunction({
+  name: "CreateBid",
+  body: Query(Lambda(
+    ["bid"],
+    Create(
+      Collection("Bid"),
+      {
+        data: Var("bid")
+      }
+    )
+  )),
+  role: Role("UDF")
+})
