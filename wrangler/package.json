@@ -1,7 +1,7 @@
 {
   "private": true,
   "name": "wrangler",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "A template for kick starting a Cloudflare Workers project",
   "main": "index.js",
   "scripts": {
@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "@fauna-labs/fauna-schema-migrate": "^2.1.5",
-    "faunadb": "^4.4.1"
+    "faunadb": "^4.4.1",
+    "worktop": "^0.6.3"
   }
 }
