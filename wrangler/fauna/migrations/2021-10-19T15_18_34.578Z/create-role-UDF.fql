@@ -3,7 +3,8 @@ CreateRole({
   "privileges": [{
     "resource": Collection("Bid"),
     "actions": {
-      "create": true
+      "create": true,
+      "read": true
     }
   }, {
     "resource": Collection("Listing"),
@@ -12,7 +13,7 @@ CreateRole({
       "read": true
     }
   }, {
-    "resource": Index("bid_by_listing_price_descending"),
+    "resource": Index("bid_by_listing_amount_descending"),
     "actions": {
       "read": true
     }

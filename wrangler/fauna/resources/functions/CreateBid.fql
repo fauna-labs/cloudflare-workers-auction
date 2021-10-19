@@ -4,11 +4,15 @@
 CreateFunction({
   name: "CreateBid",
   body: Query(Lambda(
-    ["bid"],
+    ["listingID", "bid"],
     Create(
       Collection("Bid"),
       {
-        data: Var("bid")
+        data: {
+          bidder: Select("bidder", Var("bid")),
+          amount: Select("amount", Var("bid")),
+          listing: Ref(Collection("Listing"), Var("listingID")),
+        }
       }
     )
   )),

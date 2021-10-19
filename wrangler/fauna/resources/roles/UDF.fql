@@ -7,7 +7,8 @@ CreateRole({
     {
       resource: Collection("Bid"),
       actions: {
-        create: true
+        create: true,
+        read: true
       }
     },
     {
@@ -18,7 +19,7 @@ CreateRole({
       }
     },
     {
-      resource: Index("bid_by_listing_price_descending"),
+      resource: Index("bid_by_listing_amount_descending"),
       actions: {
         read: true
       }

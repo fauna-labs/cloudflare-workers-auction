@@ -18,7 +18,8 @@ router.add('GET', '/', async (request, response) => {
   response.send(200, 'Hello, worktop!');
 });
 
-router.add('POST', '/listing', async (request, response) => {
+// Create a listing
+router.add('POST', '/listings', async (request, response) => {
   const { title, description, reserve } = await request.body();
 
   try {
@@ -31,6 +32,68 @@ router.add('POST', '/listing', async (request, response) => {
           reserve: reserve
         }
       },
+    );
+    
+    const result = await faunaClient.query(query);
+  
+    response.send(200, result);  
+  } catch (error) {
+    const faunaError = getFaunaError(error);
+    response.send(faunaError.status, faunaError);
+  };
+});
+
+// Get all listings
+router.add('GET', '/listings', async (request, response) => {
+  try {
+    const query = Call(
+      "GetAllListings",
+      "",
+    );
+    
+    const result = await faunaClient.query(query);
+  
+    response.send(200, result);  
+  } catch (error) {
+    const faunaError = getFaunaError(error);
+    response.send(faunaError.status, faunaError);
+  };
+});
+
+// Create a bid
+router.add('POST', '/listings/:listingId/bids', async (request, response) => {
+  try {
+    const { listingId } = request.params;
+    const { bidder, amount } = await request.body();  
+
+    const query = Call(
+      "CreateBid",
+      [
+        listingId,
+        {
+          bidder: bidder,
+          amount: amount,
+        }
+      ]
+    );
+    
+    const result = await faunaClient.query(query);
+  
+    response.send(200, result);  
+  } catch (error) {
+    const faunaError = getFaunaError(error);
+    response.send(faunaError.status, faunaError);
+  };
+});
+
+// Get the highest bid
+router.add('GET', '/listings/:listingId/bids', async (request, response) => {
+  try {
+    const { listingId } = request.params;
+
+    const query = Call(
+      "GetHighestBid",
+      listingId.toString(),
     );
     
     const result = await faunaClient.query(query);

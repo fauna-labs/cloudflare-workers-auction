@@ -1,11 +1,11 @@
 CreateIndex({
-  "name": "bid_by_listing_price_descending",
+  "name": "bid_by_listing_amount_descending",
   "source": Collection("Bid"),
   "terms": [{
     "field": ["data", "listing"]
   }],
   "values": [{
-    "field": ["data", "price"],
+    "field": ["data", "amount"],
     "reverse": true
   }, {
     "field": ["ref"]

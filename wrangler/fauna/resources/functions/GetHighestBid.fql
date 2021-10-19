@@ -7,7 +7,7 @@ CreateFunction({
     "listingID",
     Get(
       Match(
-        Index("bid_by_listing_price_descending"),
+        Index("bid_by_listing_amount_descending"),
         Ref(Collection("Listing"), Var("listingID"))
       ),
     )
